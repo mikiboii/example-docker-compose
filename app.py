@@ -31,7 +31,7 @@ def miki():
         #subprocess.run(["heroku", "buildpacks:add", "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"], check=True)
 
         # Install FFmpeg (with -y to avoid manual confirmation)
-        #subprocess.run(["sudo", "apt", "install", "-y", "ffmpeg"], check=True)
+        subprocess.run(["apt", "install", "-y", "ffmpeg"], check=True)
 
         try:
             # Use FFmpeg to stream the live stream to the Twitch RTMP URL
