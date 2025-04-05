@@ -1,2 +1,6 @@
-flask
 redis
+flask_sock
+flask
+livereload==2.4.0
+gunicorn
+requests
