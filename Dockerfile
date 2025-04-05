@@ -1,16 +1,15 @@
-FROM python:3.12-slim-bookworm  # Latest stable Python as of 2024
+FROM python:3.12-slim-bookworm
 
 WORKDIR /app
 
-# Set environment variables
-ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1 \
-    FLASK_APP=app.py \
-    FLASK_RUN_HOST=0.0.0.0 \
-    FLASK_ENV=development  # For development mode
+# Set environment variables (single line format)
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+ENV FLASK_APP=app.py
+ENV FLASK_RUN_HOST=0.0.0.0
+ENV FLASK_ENV=development
 
-# Install system dependencies only if needed
-# (Remove if you don't need compiler tools)
+# Install system dependencies
 RUN apt-get update && \
     apt-get install -y --no-install-recommends gcc python3-dev && \
     rm -rf /var/lib/apt/lists/*
