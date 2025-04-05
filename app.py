@@ -10,7 +10,7 @@ app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 
         # Live stream URL
-url = "https://pull-f5-tt03.tiktokcdn.com/game/stream-3287551689678128005_sd.flv?expire=1745061710&sign=0f4efcf4a632867daa673569992d60da&_webnoredir=1"
+url = "https://pull-f5-tt03.tiktokcdn.com/game/stream-3287562464610222981_hd.flv?_session_id=053-20250405222934B808DF48462528038FF4.1743863380563&_webnoredir=1&expire=1745072975&sign=6dbe7e45ea1caf36f66a44c8da5c1516"
 
         # Twitch RTMP URL
 twitch_rtmp_url = "rtmp://live-lax.twitch.tv/app/live_1072101235_ztWGwxq7oMHGHkVmsrbqDIGvTV5DW2"
