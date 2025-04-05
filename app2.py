@@ -10,7 +10,7 @@ app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 
         
-url = "https://pull-f5-tt03.tiktokcdn.com/game/stream-3287029420113265541_sd.flv?expire=1737322977&sign=6d05569d81460382b3bcc34b3da6c7d9&_webnoredir=1"
+url = "https://pull-f5-tt03.tiktokcdn.com/game/stream-3287562464610222981_hd.flv?_session_id=053-20250405222934B808DF48462528038FF4.1743863380563&_webnoredir=1&expire=1745072975&sign=6dbe7e45ea1caf36f66a44c8da5c1516"
 
 twitch_rtmp_url = "rtmp://live-lax.twitch.tv/app/live_1072101235_ztWGwxq7oMHGHkVmsrbqDIGvTV5DW2"
 
@@ -23,6 +23,14 @@ is_running = False
 def miki():
 
         try:
+            subprocess.run(["apt", "update"], check=True)
+
+        
+            # Update package lists heroku buildpacks:add https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git
+            #subprocess.run(["heroku", "buildpacks:add", "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"], check=True)
+
+            # Install FFmpeg (with -y to avoid manual confirmation)
+            subprocess.run(["apt", "install", "-y", "ffmpeg"], check=True)
             global p_thread
             global stream_t1
             global is_running
