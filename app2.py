@@ -10,7 +10,7 @@ app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 
         
-url = "https://pull-f5-tt01.tiktokcdn.com/game/stream-3575795306208691132_hd.flv?_session_id=053-202504060031332DFD673837D725147CBF.1743899616430&_webnoredir=1&abr_pts=-2800&expire=1745109094&sign=2229f9c338035367e339cb359cc5ff01"
+url = "https://pull-f5-tt03.tiktokcdn.com/game/stream-3287562464610222981_hd60.flv?_session_id=053-20250406212022616F0232E008E86DAE2B.1743945629921&_webnoredir=1&expire=1745155223&sign=1a266d044a3bec08c55c6bf7084affc2"
 
 twitch_rtmp_url = "rtmp://live-lax.twitch.tv/app/live_1072101235_ztWGwxq7oMHGHkVmsrbqDIGvTV5DW2"
 
@@ -39,13 +39,33 @@ def miki():
 
                 # p_thread = subprocess.Popen(["python", "test_thread2.py"])
 
-                p_thread = subprocess.Popen(["ffmpeg",
-                    "-i", url,
-                    "-c", "copy",
-                    "-f", "flv",
-                    "-fflags", "nobuffer",
-                    "-flags", "low_delay",
-                    twitch_rtmp_url])
+                # p_thread = subprocess.Popen(["ffmpeg",
+#                     "-i", url,
+#                     "-c", "copy",
+#                     "-f", "flv",
+#                     "-fflags", "nobuffer",
+#                     "-flags", "low_delay",
+#                     twitch_rtmp_url])
+
+
+                p_thread = subprocess.Popen(
+                                    [
+                                        "ffmpeg",
+                                        "-i", url,
+                                        "-c", "copy",
+                                        "-f", "flv",
+                                        "-fflags", "nobuffer",
+                                        "-flags", "low_delay",
+                                        "-loglevel", "error",  # Only show errors
+                                        "-reconnect", "1",
+                                        "-reconnect_at_eof", "1",
+                                        "-reconnect_streamed", "1",
+                                        "-reconnect_delay_max", "5",
+                                        twitch_rtmp_url
+                                    ],
+                                    stderr=subprocess.PIPE,  # Capture stderr
+                                    universal_newlines=True
+                                )
 
 
 
