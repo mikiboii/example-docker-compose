@@ -39,33 +39,33 @@ def miki():
 
                 # p_thread = subprocess.Popen(["python", "test_thread2.py"])
 
-                # p_thread = subprocess.Popen(["ffmpeg",
-#                     "-i", url,
-#                     "-c", "copy",
-#                     "-f", "flv",
-#                     "-fflags", "nobuffer",
-#                     "-flags", "low_delay",
-#                     twitch_rtmp_url])
+                p_thread = subprocess.Popen(["ffmpeg",
+                    "-i", url,
+                    "-c", "copy",
+                    "-f", "flv",
+                    "-fflags", "nobuffer",
+                    "-flags", "low_delay",
+                    twitch_rtmp_url])
 
 
-                p_thread = subprocess.Popen(
-                                    [
-                                        "ffmpeg",
-                                        "-i", url,
-                                        "-c", "copy",
-                                        "-f", "flv",
-                                        "-fflags", "nobuffer",
-                                        "-flags", "low_delay",
-                                        "-loglevel", "error",  # Only show errors
-                                        "-reconnect", "1",
-                                        "-reconnect_at_eof", "1",
-                                        "-reconnect_streamed", "1",
-                                        "-reconnect_delay_max", "5",
-                                        twitch_rtmp_url
-                                    ],
-                                    stderr=subprocess.PIPE,  # Capture stderr
-                                    universal_newlines=True
-                                )
+                # p_thread = subprocess.Popen(
+                #                     [
+                #                         "ffmpeg",
+                #                         "-i", url,
+                #                         "-c", "copy",
+                #                         "-f", "flv",
+                #                         "-fflags", "nobuffer",
+                #                         "-flags", "low_delay",
+                #                         "-loglevel", "error",  # Only show errors
+                #                         "-reconnect", "1",
+                #                         "-reconnect_at_eof", "1",
+                #                         "-reconnect_streamed", "1",
+                #                         "-reconnect_delay_max", "5",
+                #                         twitch_rtmp_url
+                #                     ],
+                #                     stderr=subprocess.PIPE,  # Capture stderr
+                #                     universal_newlines=True
+                #                 )
 
 
 
@@ -112,12 +112,12 @@ def miki_tester():
 
 
 
-stream_t1 = threading.Thread(target=miki)
-stream_t1.start()
+# stream_t1 = threading.Thread(target=miki)
+# stream_t1.start()
 
 
-t2 = threading.Thread(target=miki_tester)
-t2.start()
+# t2 = threading.Thread(target=miki_tester)
+# t2.start()
 
 
 def stream_restarter():
@@ -180,9 +180,9 @@ def stream_restarter():
             pass
        
 
-# restarter_t1 = threading.Thread(target=stream_restarter)
+restarter_t1 = threading.Thread(target=stream_restarter)
 
-# restarter_t1.start()
+restarter_t1.start()
 
 
 
