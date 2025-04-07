@@ -116,8 +116,8 @@ stream_t1 = threading.Thread(target=miki)
 stream_t1.start()
 
 
-# t2 = threading.Thread(target=miki_tester)
-# t2.start()
+t2 = threading.Thread(target=miki_tester)
+t2.start()
 
 
 def stream_restarter():
