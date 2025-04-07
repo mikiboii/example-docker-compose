@@ -112,8 +112,8 @@ def miki_tester():
 
 
 
-# stream_t1 = threading.Thread(target=miki)
-# stream_t1.start()
+stream_t1 = threading.Thread(target=miki)
+stream_t1.start()
 
 
 # t2 = threading.Thread(target=miki_tester)
@@ -180,9 +180,9 @@ def stream_restarter():
             pass
        
 
-restarter_t1 = threading.Thread(target=stream_restarter)
+# restarter_t1 = threading.Thread(target=stream_restarter)
 
-restarter_t1.start()
+# restarter_t1.start()
 
 
 
