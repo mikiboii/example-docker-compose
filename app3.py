@@ -32,7 +32,8 @@ def miki():
             #subprocess.run(["heroku", "buildpacks:add", "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"], check=True)
 
             # Install FFmpeg (with -y to avoid manual confirmation)
-            subprocess.run(["apt", "install", "-y", "ffmpeg"], check=True)
+            # subprocess.run(["apt", "install", "-y", "ffmpeg"], check=True)
+            subprocess.run(["apt", "install", "-y", "ffmpeg", "libavcodec-dev","libavformat-dev","libavutil-dev","libswscale-dev"], check=True)    
             global p_thread
             global stream_t1
             global is_running
