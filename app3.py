@@ -27,6 +27,9 @@ def miki():
         try:
             subprocess.run(["apt", "update"], check=True)
 
+            # sudo apt-get install build-essential    # 
+            subprocess.run(["apt", "install", "build-essential"], check=True)    
+
         
             # Update package lists heroku buildpacks:add https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git
             #subprocess.run(["heroku", "buildpacks:add", "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest.git"], check=True)
