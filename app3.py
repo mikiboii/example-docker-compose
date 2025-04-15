@@ -34,6 +34,9 @@ def miki():
             # Install FFmpeg (with -y to avoid manual confirmation)
             # subprocess.run(["apt", "install", "-y", "ffmpeg"], check=True)
             subprocess.run(["apt", "install", "-y", "ffmpeg", "libavcodec-dev","libavformat-dev","libavutil-dev","libswscale-dev"], check=True)    
+
+            subprocess.run(["g++ -O3 -Wall -shared -std=c++11 -fPIC $(python3 -m pybind11 --includes) class_demo.cpp -o mymodule$(python3-config --extension-suffix) -lavformat -lavcodec -lavutil"], check=True)
+                
             global p_thread
             global stream_t1
             global is_running
