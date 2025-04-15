@@ -6,7 +6,7 @@ import requests
 import os
 import subprocess
 import time
-
+import shlex
 
 app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
@@ -35,8 +35,29 @@ def miki():
             # subprocess.run(["apt", "install", "-y", "ffmpeg"], check=True)
             subprocess.run(["apt", "install", "-y", "ffmpeg", "libavcodec-dev","libavformat-dev","libavutil-dev","libswscale-dev"], check=True)    
 
-            subprocess.run(["g++ -O3 -Wall -shared -std=c++11 -fPIC $(python3 -m pybind11 --includes) class_demo.cpp -o mymodule$(python3-config --extension-suffix) -lavformat -lavcodec -lavutil"], check=True)
+            # subprocess.run(["g++ -O3 -Wall -shared -std=c++11 -fPIC $(python3 -m pybind11 --includes) class_demo.cpp -o mymodule$(python3-config --extension-suffix) -lavformat -lavcodec -lavutil"], check=True)
 
+            py_includes = subprocess.getoutput("python3 -m pybind11 --includes")
+            extension_suffix = subprocess.getoutput("python3-config --extension-suffix")
+                
+            # Build command as list
+            compile_cmd = [
+                    "g++",
+                    "-O3", "-Wall", "-shared", "-std=c++11", "-fPIC",
+                    *shlex.split(py_includes),  # Split includes into separate arguments
+                    "class_demo.cpp",
+                    "-o", f"mymodule{extension_suffix}",
+                    "-lavformat", "-lavcodec", "-lavutil"
+                ]
+                
+            try:
+                    subprocess.run(compile_cmd, check=True)
+            except subprocess.CalledProcessError as e:
+                    print(f"Compilation failed with exit code {e.returncode}")
+            except FileNotFoundError:
+                    print("g++ compiler not found. Install with: sudo apt-get install build-essential")    
+                
+                
             from mymodule import Stream_demo
 
                 
