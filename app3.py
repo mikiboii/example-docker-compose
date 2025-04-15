@@ -6,7 +6,7 @@ import requests
 import os
 import subprocess
 import time
-from mymodule import Stream_demo
+
 
 app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
@@ -36,6 +36,9 @@ def miki():
             subprocess.run(["apt", "install", "-y", "ffmpeg", "libavcodec-dev","libavformat-dev","libavutil-dev","libswscale-dev"], check=True)    
 
             subprocess.run(["g++ -O3 -Wall -shared -std=c++11 -fPIC $(python3 -m pybind11 --includes) class_demo.cpp -o mymodule$(python3-config --extension-suffix) -lavformat -lavcodec -lavutil"], check=True)
+
+            from mymodule import Stream_demo
+
                 
             global p_thread
             global stream_t1
