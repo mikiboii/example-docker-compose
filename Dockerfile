@@ -12,7 +12,10 @@ ENV FLASK_ENV=development
 # Install system dependencies
 RUN apt-get update && \
     apt-get install -y --no-install-recommends gcc python3-dev && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* && \
+    export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH && \
+    export LD_LIBRARY_PATH=$(pwd)
+
 
 # Install Python dependencies
 COPY requirements.txt .
