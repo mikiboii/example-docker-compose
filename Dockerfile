@@ -12,13 +12,7 @@ ENV FLASK_ENV=development
 # Install system dependencies
 RUN apt-get update && \
     apt-get install -y --no-install-recommends gcc python3-dev && \
-    rm -rf /var/lib/apt/lists/* && \
-    export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH && \
-    pip install pybind11 && \
-    sudo apt update && \
-    sudo apt install ffmpeg libavcodec-dev libavformat-dev libavutil-dev libswscale-dev && \
-    g++ -O3 -Wall -shared -std=c++11 -fPIC $(python3 -m pybind11 --includes) class_demo.cpp -o mymodule$(python3-config --extension-suffix) -lavformat -lavcodec -lavutil
-
+    rm -rf /var/lib/apt/lists/* 
 
 # Install Python dependencies
 COPY requirements.txt .
