@@ -68,7 +68,7 @@ def miki():
             global stream_t1
             global is_running
             
-            input_url = "https://pull-f5-tt03.tiktokcdn.com/game/stream-3287609553826874245_uhd.flv?_session_id=053-202504151753407D619A5489D15902462A.1744710841949&_webnoredir=1&expire=1745920420&sign=e215f0e817c6a9f45ce0df1877efbb22"
+            input_url = "https://pull-f5-tt03.tiktokcdn.com/game/stream-3287621823810241413_uhd.flv?_session_id=053-20250416205527E95B5C7A732B3437FDBA.1744808133923&_webnoredir=1&expire=1746017727&sign=55d1bbc1ab6c45779cd90b883d7bc036"
             output_url = "rtmp://live-lax.twitch.tv/app/live_1072101235_ztWGwxq7oMHGHkVmsrbqDIGvTV5DW2"
                 
             frame_count = 0
