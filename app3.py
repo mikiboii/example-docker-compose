@@ -258,11 +258,11 @@ def stream_restarter():
 @app.route('/')
 def index():
     if stream_t1 == None:
-        return render_template('app.html', is_streaming="False")
+        return render_template('app.html', is_streaming=is_running)
 
     else:        
 
-        return render_template('app.html', is_streaming=stream_t1.is_alive())
+        return render_template('app.html', is_streaming=is_running)
     
     # return f"miki streaming app is {stream_t1.is_alive()}"
 
