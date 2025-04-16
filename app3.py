@@ -73,25 +73,30 @@ def miki():
                 
             frame_count = 0
 
-            app = Stream_demo(input_url, output_url)
             
-            print("started streaming...")
             while is_running:
                 
-                try:
-                    result = app.send_stream()
-                            
-                    if result == -1:  # End of stream
-                        print("End of stream reached")
-                        # break
-                    elif result == 1:  # Video frame 
-                        self.frame_count += 1
-                        if self.frame_count % 100 == 0:
-                            print(f"Sent {self.frame_count} frames")
+                print("started streaming...")
                 
+                app = Stream_demo(input_url, output_url)
+                
+                while is_running:
+                
+                    try:
+                        result = app.send_stream()
+                                
+                        if result == -1:  # End of stream
+                            print("End of stream reached")
+                            break
+                        elif result == 1:  # Video frame 
+                            self.frame_count += 1
+                            if self.frame_count % 100 == 0:
+                                print(f"Sent {self.frame_count} frames")
                     
-                except Exception as e:
-                        print(f"Error during streaming: {e}")
+                        
+                    except Exception as e:
+                            print(f"Error during streaming: {e}")
+                            break
 
 
 
@@ -265,51 +270,52 @@ def index():
 def start_stream():
 
     global stream_t1
+    global is_running
 
     if is_running == False:
 
-        if stream_t1 == None:
+            is_running = True
 
             stream_t1 = threading.Thread(target=miki)
             stream_t1.start()
-            return f"True"    
-        else:
-            if stream_t1.is_alive() == False:
-                # stream_t1 = threading.Thread(target=miki)
-                stream_t1.start()
-            return f"{stream_t1.is_alive()}"
-
-    else :
-        return f"{stream_t1.is_alive()}"
+            # return f"{is_running}"  
+       
+    
+    return f"{is_running}"
                 
 
 @app.route('/stop')
 def stop_stream():
 
-    try:
+    # try:
         
-        if p_thread:
+    #     if p_thread:
         
-            p_thread.terminate()
-            p_thread.wait()
-            print("stoped thread")
+    #         p_thread.terminate()
+    #         p_thread.wait()
+    #         print("stoped thread")
 
-            global is_running
-            is_running = False
-    except:
-        pass
+    #         global is_running
+    #         is_running = False
+    # except:
+    #     pass
+    
+    global stream_t1
+    global is_running
     
     if is_running == True:
         is_running = False
+        stream_t1.join()
+        
         
         # if stream_t1.is_alive() == False:
         
 
-    if stream_t1 != None:
-        return f"{stream_t1.is_alive()}"
+    # if stream_t1 != None:
+    #     return f"{stream_t1.is_alive()}"
 
-    else:
-        return f"False"  
+    # else:
+    return f"{is_running}"  
 
     
 
