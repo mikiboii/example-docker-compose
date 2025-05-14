@@ -54,7 +54,7 @@ async def on_connect(event: ConnectEvent):
             'cover_url': client.room_info['cover']['url_list'][0] if client.room_info.get('cover') else None
         }
     tiktok_data['is_live'] = True
-    tiktok_data['url'] = mm['data']['origin']['main']['flv']
+    tiktok_data['url'] = mm['data']['uhd']['main']['flv']
     await client.disconnect()
 
 async def check_once():
